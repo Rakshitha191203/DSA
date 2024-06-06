@@ -1,0 +1,43 @@
+class Solution {
+    int count(int[] arr, int n, int x) {
+        int start=ceil(arr,n,x);
+        int last=floor(arr,n,x);
+        int ans=last-start+1;
+        if(start==-1 || arr[start]!=x){
+            return 0;
+        }
+        return ans;
+    }
+    int ceil(int arr[],int n,int t){
+        int low=0;
+        int high=n-1;
+        int start=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]>=t){
+                start=mid;
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return start;   //index of first occurnece
+    }
+    int floor(int arr[],int n,int t){
+        int low=0;
+        int high=n-1;
+        int last=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]<=t){
+                last=mid;
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+        return last;    //index of last occurence
+    }
+}
