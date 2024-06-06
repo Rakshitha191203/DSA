@@ -1,0 +1,41 @@
+class Solve {
+    Pair getFloorAndCeil(int[] arr, int n, int x) {
+        Arrays.sort(arr);
+        // code here
+        int low=0;
+        int high=n-1;
+        int floor=0,ceil=0;
+        int mf=Integer.MIN_VALUE,mc=Integer.MAX_VALUE;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]<=x){
+                floor=arr[mid];
+                mf=Math.max(floor,mf);
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+        low=0;high=n-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]>=x){
+                ceil=arr[mid];
+                mc=Math.min(ceil,mc);
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        if(mf==Integer.MIN_VALUE){
+            mf=-1;
+        }
+        if(mc==Integer.MAX_VALUE){
+            mc=-1;
+        }
+        return new Pair(mf,mc);
+        
+    }
+}
