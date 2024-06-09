@@ -1,0 +1,31 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        int low=0;
+        int k=target;
+        int high=nums.length-1;
+        int ans=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(nums[mid]==target){
+                return mid;
+            }
+            if(nums[low]<=nums[mid]){
+                if(nums[low]<=k && k<=nums[mid]){
+                    high=mid-1;     //element exists
+                }
+                else{
+                    low=mid+1;      //element doesn't exists.
+                }
+            }
+            else{
+                if(nums[mid]<=k && k<=nums[high]){
+                    low=mid+1;      //element exists
+                }
+                else{
+                    high=mid-1;     //element doesn't exists
+                }
+            }
+        }
+        return ans;
+    }
+}
