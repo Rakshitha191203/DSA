@@ -1,0 +1,28 @@
+class Solution {
+    int findKRotation(int arr[], int n) {
+        // code here
+        int low=0;
+        int high=n-1;
+        int ans=Integer.MAX_VALUE;
+        int index=0;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[low]<=arr[mid]){
+                ans=Math.min(ans,arr[low]);
+                if(arr[low]<=ans){
+                    index=low;
+                }
+                low=mid+1;
+            }
+            else{
+                ans=Math.min(ans,arr[mid]);
+                if(arr[mid]<=ans){
+                    index=mid;
+                }
+                high=mid-1;
+            }
+        }
+        
+        return index;
+    }
+}
